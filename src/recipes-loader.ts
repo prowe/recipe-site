@@ -13,8 +13,7 @@ export async function loadRecipe(relativePath: string): Promise<Recipe> {
 }
 
 export async function getAllRecipePaths(): Promise<string[]> {
-  const fileNames = await fs.readdir(recipesDir);
-  return fileNames.map((name) => path.join(recipesDir, name));
+  return await fs.readdir(recipesDir);
 }
 
 export async function loadAllRecipes(): Promise<{
@@ -23,8 +22,7 @@ export async function loadAllRecipes(): Promise<{
   const paths = await getAllRecipePaths();
   return Object.fromEntries(
     await Promise.all(
-      paths.map(async (filePath) => {
-        const relativePath = path.relative(recipesDir, filePath);
+      paths.map(async (relativePath) => {
         const recipe = await loadRecipe(relativePath);
         return [relativePath, recipe];
       })
