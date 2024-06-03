@@ -6,7 +6,7 @@ import Link from "next/link";
 function RecipeListItem({filePath, recipe}: {filePath: string, recipe: Recipe}) {
   return (
     <li key={filePath}>
-      <Link href={`/recipes/${encodeURIComponent(filePath)}/`}>{recipe.title}</Link>
+      <Link href={`./recipes/${encodeURIComponent(filePath)}/`}>{recipe.title}</Link>
     </li>
   );
 }
