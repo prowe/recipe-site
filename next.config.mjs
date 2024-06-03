@@ -2,7 +2,7 @@
 const nextConfig = {
     output: 'export',
     trailingSlash: true,
-    basePath: '/recipe-app'
+    basePath: process.env.BASE_PATH
 };
 
 export default nextConfig;
