@@ -7,9 +7,13 @@ const recipesDir = "./recipes";
 
 export async function loadRecipe(relativePath: string): Promise<Recipe> {
   const filePath = path.join(recipesDir, relativePath);
-  const yaml = await fs.readFile(filePath, "utf-8");
-  const recipe = recipeSchema.parse(parse(yaml));
-  return recipe;
+  try {
+    const yaml = await fs.readFile(filePath, "utf-8");
+    const recipe = recipeSchema.parse(parse(yaml));
+    return recipe;
+  } catch (e) {
+    throw new Error(`Error reading recipe file ${filePath}: ${e.message}`, {cause: e});
+  }
 }
 
 export async function getAllRecipePaths(): Promise<string[]> {
