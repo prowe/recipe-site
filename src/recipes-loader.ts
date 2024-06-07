@@ -12,7 +12,10 @@ export async function loadRecipe(relativePath: string): Promise<Recipe> {
     const recipe = recipeSchema.parse(parse(yaml));
     return recipe;
   } catch (e) {
-    throw new Error(`Error reading recipe file ${filePath}: ${e.message}`, {cause: e});
+    if (e instanceof Error) {
+      throw new Error(`Error reading recipe file ${filePath}: ${e.message}`, {cause: e});
+    }
+    throw e;
   }
 }
 
