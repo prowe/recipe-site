@@ -34,7 +34,7 @@ export default async function RecipePage({params}: {params: RecipePageParams}) {
             <section className={styles.notes}>
                 <h2>Notes</h2>
                 <ol>
-                    {recipe.notes.map((note, index) => <li key={index}>{note}</li>)}
+                    {recipe.notes?.map((note, index) => <li key={index}>{note}</li>)}
                 </ol>
             </section>
 
