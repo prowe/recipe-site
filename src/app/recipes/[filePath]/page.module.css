@@ -12,7 +12,8 @@
     }
 }
 
-.steps {
+.steps,
+.notes {
     & > ol {
         margin-left: 1rem;
         padding-inline-start: 40px;

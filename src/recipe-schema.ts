@@ -8,4 +8,6 @@ export const recipeSchema = z.object({
     notes: z.array(z.string()).optional()
 });
 
-export type Recipe = z.infer<typeof recipeSchema>;
+export type Recipe = z.infer<typeof recipeSchema> & {
+    filePath: string;
+};

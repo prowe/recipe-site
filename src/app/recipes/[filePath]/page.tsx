@@ -31,12 +31,12 @@ export default async function RecipePage({params}: {params: RecipePageParams}) {
                 </ol>
             </section>
 
-            <section className={styles.notes}>
+            {Boolean(recipe.notes?.length) && <section className={styles.notes}>
                 <h2>Notes</h2>
                 <ol>
                     {recipe.notes?.map((note, index) => <li key={index}>{note}</li>)}
                 </ol>
-            </section>
+            </section>}
 
             <section>
                 {recipe.source && <a href={recipe.source.toString()} target="_blank">Source</a>}
