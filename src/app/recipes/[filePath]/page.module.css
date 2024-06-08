@@ -5,7 +5,8 @@
     gap: .5rem;
 }
 
-.ingredients {
+.ingredients,
+.ingredientGroup {
     & > ul {
         margin-left: 1rem;
         padding-inline-start: 40px;
