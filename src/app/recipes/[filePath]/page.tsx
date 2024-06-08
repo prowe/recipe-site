@@ -1,6 +1,7 @@
 import { getAllRecipePaths, loadRecipe } from "@/recipes-loader";
 import styles from "./page.module.css";
 import { Recipe } from "@/recipe-schema";
+import AddToMenuButton from "./add-to-menu-button";
 
 type RecipePageParams = {
   filePath: string;
@@ -78,6 +79,7 @@ export default async function RecipePage({
             Source
           </a>
         )}
+        <AddToMenuButton recipe={recipe} />
       </section>
     </main>
   );
