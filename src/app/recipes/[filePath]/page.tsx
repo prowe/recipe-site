@@ -2,6 +2,7 @@ import { getAllRecipePaths, loadRecipe } from "@/recipes-loader";
 import styles from "./page.module.css";
 import { Recipe } from "@/recipe-schema";
 import AddToMenuButton from "./add-to-menu-button";
+import Markdown from "react-markdown";
 
 type RecipePageParams = {
   filePath: string;
@@ -67,7 +68,9 @@ export default async function RecipePage({
           <h2>Notes</h2>
           <ol>
             {recipe.notes?.map((note, index) => (
-              <li key={index}>{note}</li>
+              <li key={index}>
+                <Markdown>{note}</Markdown>
+              </li>
             ))}
           </ol>
         </section>
@@ -79,7 +82,6 @@ export default async function RecipePage({
             Source
           </a>
         )}
-        <AddToMenuButton recipe={recipe} />
       </section>
     </main>
   );
