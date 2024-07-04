@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import { Recipe } from "@/recipe-schema";
 import AddToMenuButton from "./add-to-menu-button";
 import Markdown from "react-markdown";
+import CopyIngredientsButton from "./copy-ingredients-button";
 
 type RecipePageParams = {
   filePath: string;
@@ -46,7 +47,7 @@ export default async function RecipePage({
       <h1>{recipe.title}</h1>
 
       <section className={styles.ingredients}>
-        <h2>Ingredients</h2>
+        <h2>Ingredients <CopyIngredientsButton recipe={recipe} /></h2>
         <ul>
           {recipe.ingredients.map((ing, index) => (
             <IngredientEntry key={index} ingredient={ing} />
