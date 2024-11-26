@@ -1,11 +1,10 @@
 .main {
     padding: 1rem;
+}
+
+.recipeList {
+    list-style: none;
     display: flex;
     flex-direction: column;
     gap: .5rem;
-}
-
-.tagListWrapper {
-    float: right;
-    margin-right: 1rem;
 }
