@@ -5,6 +5,25 @@
     gap: .5rem;
 }
 
+@media (min-width: 1100px) {
+    .main {
+        flex-direction: row;
+        flex-wrap: wrap;
+        & > H1 {
+            width: 100%;
+        }
+        .ingredients {
+            width: 30%;
+        }
+        .steps {
+            flex: 1;
+        }
+        .notes {
+            width: 100%;
+        }
+    }
+}
+
 .ingredients,
 .ingredientGroup {
     & > ul {
