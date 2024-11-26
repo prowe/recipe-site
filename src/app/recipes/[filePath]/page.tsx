@@ -59,7 +59,9 @@ export default async function RecipePage({
         <h2>Steps</h2>
         <ol>
           {recipe.steps.map((step, index) => (
-            <li key={index}>{step}</li>
+            <li key={index}>
+              <Markdown>{step}</Markdown>
+            </li>
           ))}
         </ol>
       </section>

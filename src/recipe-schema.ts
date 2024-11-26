@@ -14,6 +14,7 @@ export const recipeSchema = z.object({
   ),
   steps: z.array(z.string()),
   notes: z.array(z.string()).optional(),
+  tags: z.array(z.string()).optional()
 });
 
 export type Recipe = z.infer<typeof recipeSchema> & {
