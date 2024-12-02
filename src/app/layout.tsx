@@ -21,6 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <header className={styles.header}>
           <Link href="/">Home</Link>
+          <Link href="/tags/">Tags</Link>
         </header>
         {children}
       </body>
