@@ -2,8 +2,9 @@ import { getAllRecipePaths, loadRecipe } from "@/recipes-loader";
 import styles from "./page.module.css";
 import { Recipe } from "@/recipe-schema";
 import AddToMenuButton from "./add-to-menu-button";
-import Markdown from "react-markdown";
+import Markdown, { Components, UrlTransform } from "react-markdown";
 import CopyIngredientsButton from "./copy-ingredients-button";
+import Link from "next/link";
 
 type RecipePageParams = {
   filePath: string;
@@ -14,13 +15,21 @@ export async function generateStaticParams(): Promise<RecipePageParams[]> {
   return filePaths.map((filePath) => ({ filePath }));
 }
 
+const markdownComponents: Components = {
+  a: ({href, children}) => href ? <Link href={href}>{children}</Link> : <a>{children}</a>
+};
+
 function IngredientEntry({
   ingredient,
 }: {
   ingredient: Recipe["ingredients"][0];
 }) {
   if (typeof ingredient === "string") {
-    return <li>{ingredient}</li>;
+    return (
+      <li>
+        <Markdown components={markdownComponents}>{ingredient}</Markdown>
+      </li>
+    );
   }
 
   return (
@@ -28,7 +37,7 @@ function IngredientEntry({
       <h3>{ingredient.title}</h3>
       <ul>
         {ingredient.ingredients.map((ing) => (
-          <li key={ing}>{ing}</li>
+          <IngredientEntry ingredient={ing} />
         ))}
       </ul>
     </li>
@@ -47,7 +56,9 @@ export default async function RecipePage({
       <h1>{recipe.title}</h1>
 
       <section className={styles.ingredients}>
-        <h2>Ingredients <CopyIngredientsButton recipe={recipe} /></h2>
+        <h2>
+          Ingredients <CopyIngredientsButton recipe={recipe} />
+        </h2>
         <ul>
           {recipe.ingredients.map((ing, index) => (
             <IngredientEntry key={index} ingredient={ing} />
